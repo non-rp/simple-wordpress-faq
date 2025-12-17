@@ -5,10 +5,11 @@
 #
 # Note: if you want to stage/commit WP core files
 # you can delete this whole section/until Configuration.
+/.srv/
 /wp-admin/
 /wp-content/index.php
 /wp-content/languages
-/wp-content/plugins/index.php
+/.srv/wp-content/plugins/index.php
 /wp-content/themes/index.php
 /wp-includes/
 /index.php
@@ -24,7 +25,7 @@ wp-config.php
 /wp-content/themes/twenty*/
 
 # Example plugin
-/wp-content/plugins/hello.php
+/.srv/wp-content/plugins/hello.php
 
 # Uploads
 /wp-content/uploads/
@@ -46,3 +47,10 @@ wp-config.php
 # Note: If you wish to whitelist themes,
 # uncomment the next line
 #/wp-content/themes
+
+.idea
+node_modules/
+dist/*.map
+.DS_Store
+Thumbs.db
+package-lock.json
