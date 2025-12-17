@@ -1,0 +1,54 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: "${PROJECT_NAME}_db"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/dump.sql:/docker-entrypoint-initdb.d/01-dump.sql
+    command:
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+      - "--default-authentication-plugin=mysql_native_password"
+
+  wordpress:
+    image: wordpress:latest
+    container_name: "${PROJECT_NAME}_php"
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${DB_NAME}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./.srv:/var/www/html
+      - ./wp-content/plugins/faq-list-shortcode:/var/www/html/wp-content/plugins/faq-list-shortcode
+      - ./wp-content/themes/wptest:/var/www/html/wp-content/themes/wptest
+
+  pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: "${PROJECT_NAME}_pma"
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWORD}
+      PHP_UPLOAD_MAX_FILESIZE: 1G
+      PHP_MAX_INPUT_VARS: 1G
+    ports:
+      - "8081:80"
+
+volumes:
+  db_data:
+
