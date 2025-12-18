@@ -34,6 +34,22 @@ services:
       - ./wp-content/plugins/faq-list-shortcode:/var/www/html/wp-content/plugins/faq-list-shortcode
       - ./wp-content/themes/wptest:/var/www/html/wp-content/themes/wptest
 
+  wpcli:
+    image: wordpress:cli
+    depends_on:
+      - wordpress
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${DB_NAME}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./.srv:/var/www/html
+      - ./wp-content/plugins/faq-list-shortcode:/var/www/html/wp-content/plugins/faq-list-shortcode
+      - ./wp-content/themes/wptest:/var/www/html/wp-content/themes/wptest
+    entrypoint: [ "wp", "--path=/var/www/html" ]
+
   pma:
     image: phpmyadmin/phpmyadmin
     container_name: "${PROJECT_NAME}_pma"
