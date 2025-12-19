@@ -68,5 +68,4 @@ class ThemeAssets
 
         return $file ? filemtime(self::$dist_path . $file  ) : null;
     }
-
 }

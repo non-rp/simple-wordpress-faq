@@ -9,6 +9,9 @@
       "Wptest\\Theme\\": "inc/"
     }
   },
+  "config": {
+    "autoloader-suffix": "ThemeWptest"
+  },
   "require-dev": {
     "wp-cli/wp-cli-bundle": "^2.10"
   }

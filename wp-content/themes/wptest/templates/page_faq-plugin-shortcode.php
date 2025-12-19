@@ -6,13 +6,7 @@ get_header();
 
 <h1><?php the_title(); ?></h1>
 
-
-<section class="faq-ajax">
-    <button class="faq-ajax__btn">
-        Show FAQ
-    </button>
-</section>
-
-
 <?php
+echo do_shortcode('[faq_list ids="22,20,24,21"]');
+
 get_footer();

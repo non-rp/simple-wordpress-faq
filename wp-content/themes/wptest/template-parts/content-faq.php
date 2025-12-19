@@ -1,33 +1,8 @@
-<?php
-    do_action('debuger');
-?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-
-
+    <h1><?php the_title(); ?></h1>
 	<div class="entry-content">
 		<?php
-		the_content(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'wptest' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				wp_kses_post( get_the_title() )
-			)
-		);
-
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'wptest' ),
-				'after'  => '</div>',
-			)
-		);
+		    the_content();
 		?>
 	</div><!-- .entry-content -->
-</article><!-- #post-<?php the_ID(); ?> -->
+</article>
