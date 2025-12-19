@@ -18,6 +18,7 @@ class FaqAjax
     {
         $args = [
             'post_type'      => 'faq',
+            'post_status'    => 'publish',
             'posts_per_page' => -1,
             'orderby'        => [
                 'title' => 'ASC'
