@@ -54,3 +54,4 @@ dist/*.map
 .DS_Store
 Thumbs.db
 package-lock.json
+composer.lock

@@ -31,7 +31,7 @@ services:
       WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./.srv:/var/www/html
-      - ./wp-content/plugins/faq-list-shortcode:/var/www/html/wp-content/plugins/faq-list-shortcode
+      - ./wp-content/plugins/:/var/www/html/wp-content/plugins/
       - ./wp-content/themes/wptest:/var/www/html/wp-content/themes/wptest
 
   wpcli:
@@ -46,7 +46,7 @@ services:
       WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./.srv:/var/www/html
-      - ./wp-content/plugins/faq-list-shortcode:/var/www/html/wp-content/plugins/faq-list-shortcode
+      - ./wp-content/plugins/:/var/www/html/wp-content/plugins/
       - ./wp-content/themes/wptest:/var/www/html/wp-content/themes/wptest
     entrypoint: [ "wp", "--path=/var/www/html" ]
 
